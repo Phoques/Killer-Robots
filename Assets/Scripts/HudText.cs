@@ -33,7 +33,9 @@ public class HudText : MonoBehaviour
             noteDisplay.enabled = true;
 
             //Add a check to see what PDA it is.
-            pdaStoryClass.PDA1(); // Will need to workout how to trigger the different stories via the object interacted with.
+            //pdaStoryClass.PDA1(); // Will need to workout how to trigger the different stories via the object interacted with.
+
+            pdaStoryClass.PDACheck(); // This may be in the wrong spot or need to go altogether.
             
         }
 

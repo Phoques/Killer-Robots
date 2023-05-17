@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PdaStory : MonoBehaviour
 {
-    RaycastHit hit;
 
     HudText hudText;
 
@@ -18,18 +17,17 @@ public class PdaStory : MonoBehaviour
         hudText = FindObjectOfType<HudText>();
     }
 
-
-
-    public void PDA1()
+    public void PDACheck()
     {
         if (isPDA1)
         {
-            hudText.noteText.text = "Captains Log, 19081271 \n I found a donut the other day, boy was it tasty, omg killer robots someone HALP pls send the fkn Space marines or some shit \n Oh well im ded now fk";
-            hudText.hudExitText.text = "Press (X) to close PDA notes";
+            PDA1();
         }
-        else return;
     }
 
-
-    //if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PDA1")
+    public void PDA1()
+    {
+        hudText.noteText.text = "Captains Log, 19081271 \n I found a donut the other day, boy was it tasty, omg killer robots someone HALP pls send the fkn Space marines or some shit \n Oh well im ded now fk";
+        hudText.hudExitText.text = "Press (X) to close PDA notes";
+    }
 }

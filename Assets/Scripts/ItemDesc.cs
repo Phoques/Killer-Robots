@@ -11,8 +11,8 @@ public class ItemDesc : MonoBehaviour
     public bool isDownloading = false;
 
     HudText hudText;
-    PdaStory pdaStoryClass; // May not need
-    StoryChecker storyCheckerClass;
+    PdaStory pdaStoryClass;
+
 
 
 
@@ -20,7 +20,6 @@ public class ItemDesc : MonoBehaviour
     {
         hudText = FindObjectOfType<HudText>();
         pdaStoryClass = FindObjectOfType<PdaStory>();
-        storyCheckerClass = FindObjectOfType<StoryChecker>();
     }
 
 
@@ -86,11 +85,11 @@ public class ItemDesc : MonoBehaviour
             }
 
             Debug.Log("Hit the item");
-            if (Input.GetKeyDown(KeyCode.E) && isInteracting)
+            if (Input.GetKeyDown(KeyCode.E) && isInteracting) // Possibly do a raycast check here?
             {
                 if (!isDownloading)
                 {
-                    //storyCheckerClass.CheckItem();
+                    //Need to figure out here how to run a check to see which item we interacted with.
                     StartCoroutine(DownloadPDA());
                 }
                 if (isDownloading)

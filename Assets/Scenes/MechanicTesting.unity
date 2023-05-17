@@ -1756,7 +1756,6 @@ GameObject:
   - component: {fileID: 1126010225}
   - component: {fileID: 1126010224}
   - component: {fileID: 1126010223}
-  - component: {fileID: 1126010227}
   m_Layer: 6
   m_Name: PDA
   m_TagString: PDA1
@@ -1842,19 +1841,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1126010227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1126010221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddb5a2e3a6c2e92469225e1ff437d646, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pdaNumber: {fileID: 1126010221}
 --- !u!1 &1152235818
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,7 +2346,6 @@ GameObject:
   - component: {fileID: 1778994652}
   - component: {fileID: 1778994651}
   - component: {fileID: 1778994650}
-  - component: {fileID: 1778994649}
   m_Layer: 6
   m_Name: PDA2
   m_TagString: PDA2
@@ -2368,19 +2353,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1778994649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1778994648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddb5a2e3a6c2e92469225e1ff437d646, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pdaNumber: {fileID: 1778994648}
 --- !u!65 &1778994650
 BoxCollider:
   m_ObjectHideFlags: 0
