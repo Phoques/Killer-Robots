@@ -11,12 +11,16 @@ public class ItemDesc : MonoBehaviour
     public bool isDownloading = false;
 
     HudText hudText;
+    PdaStory pdaStoryClass; // May not need
+    StoryChecker storyCheckerClass;
 
 
 
     private void Start()
     {
         hudText = FindObjectOfType<HudText>();
+        pdaStoryClass = FindObjectOfType<PdaStory>();
+        storyCheckerClass = FindObjectOfType<StoryChecker>();
     }
 
 
@@ -29,21 +33,24 @@ public class ItemDesc : MonoBehaviour
 
     IEnumerator DownloadPDA()
     {
+        hudText.hudDisplay.enabled = false;
         Debug.Log("Coroutine Started");
         isDownloading = true;
-        hudText.hudDisplay.text = "Downloading PDA";
+        hudText.downloadingText.text = "Downloading PDA";
         yield return new WaitForSecondsRealtime(1f);
-        hudText.hudDisplay.text = "";
+        hudText.downloadingText.text = "";
         yield return new WaitForSecondsRealtime(0.4f);
-        hudText.hudDisplay.text = "Downloading PDA";
+        hudText.downloadingText.text = "Downloading PDA";
         yield return new WaitForSecondsRealtime(1f);
-        hudText.hudDisplay.text = "";
+        hudText.downloadingText.text = "";
         yield return new WaitForSecondsRealtime(0.4f);
-        hudText.hudDisplay.text = "Downloading PDA";
+        hudText.downloadingText.text = "Downloading PDA";
         yield return new WaitForSecondsRealtime(1f);
-        hudText.hudDisplay.text = "";
+        hudText.downloadingText.text = "";
         yield return new WaitForSecondsRealtime(0.4f);
-        hudText.hudDisplay.text = "Downloading PDA";
+        hudText.downloadingText.text = "Downloading PDA";
+        yield return new WaitForSecondsRealtime(0.4f);
+        hudText.downloadingText.text = "";
 
         hudText.hudNotifications.enabled = true;
         hudText.hudNotificationsText.text = "PDA Note downloaded, press (N) to view PDA.";
@@ -56,13 +63,14 @@ public class ItemDesc : MonoBehaviour
     private void ItemDescription()
     {
         Debug.Log("Description being shown");
+        hudText.hudDisplay.enabled = true;
         hudText.hudDisplay.text = "This is a cube";
     }
 
     private void RemoveItemDescription()
     {
         Debug.Log("Description NOT being shown");
-        hudText.hudDisplay.text = "";
+        hudText.hudDisplay.enabled = false;
     }
 
     private void ItemInteraction()
@@ -70,6 +78,7 @@ public class ItemDesc : MonoBehaviour
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 2, Color.red);
         if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable))
         {
+            
             isInteracting = true;
             if (isInteracting && !isDownloading)
             {
@@ -81,6 +90,7 @@ public class ItemDesc : MonoBehaviour
             {
                 if (!isDownloading)
                 {
+                    //storyCheckerClass.CheckItem();
                     StartCoroutine(DownloadPDA());
                 }
                 if (isDownloading)
