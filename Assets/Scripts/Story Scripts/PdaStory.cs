@@ -63,7 +63,8 @@ public class PdaStory : MonoBehaviour
         playerMovementClass.canMove = true;
     }
 
-    public void PDA1()
+    public void PDA1() // If you press 'e' after downloading, then viewing, THEN pressing e again will have PDA one show even after 'downloading other pda' but it only works one way
+        //It does not have the same effect when you download pda2 first, then press e on pda2, then go pda 1, so need to find the bug. Maybe could remove 'interactable' layer or something?
     {
         hudText.noteText.text = "Captains Log, 19081271 \n I found a donut the other day, boy was it tasty, omg killer robots someone HALP pls send the fkn Space marines or some shit \n Oh well im ded now fk";
         hudText.hudExitText.text = "Press (X) to close PDA notes";
