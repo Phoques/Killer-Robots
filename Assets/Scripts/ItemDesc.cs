@@ -9,6 +9,9 @@ public class ItemDesc : MonoBehaviour
     public LayerMask interactable;
     public bool isInteracting = false;
     public bool isDownloading = false;
+    public bool hasDownloaded = false;
+    public bool hasAlreadyDownloadedPDA1 = false;
+    public bool hasAlreadyDownloadedPDA2 = false;
 
     HudText hudText;
     PdaStory pdaStoryClass;
@@ -32,8 +35,9 @@ public class ItemDesc : MonoBehaviour
 
     IEnumerator DownloadPDA()
     {
-        hudText.hudDisplay.enabled = false;
+        
         Debug.Log("Coroutine Started");
+        hudText.hudDisplay.enabled = false;
         isDownloading = true;
         hudText.downloadingText.text = "Downloading PDA";
         yield return new WaitForSecondsRealtime(1f);
@@ -51,6 +55,8 @@ public class ItemDesc : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.4f);
         hudText.downloadingText.text = "";
 
+        hasDownloaded = true;
+
         hudText.hudNotifications.enabled = true;
         hudText.hudNotificationsText.text = "PDA Note downloaded, press (N) to view PDA.";
 
@@ -59,11 +65,25 @@ public class ItemDesc : MonoBehaviour
         //Make bool to say its done, Add to a list to be viewed elsewhere.
     }
 
+    private void PDACheck()
+    {
+
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PDA1" && !isDownloading)
+        {
+            pdaStoryClass.isPDA1 = true;
+        }
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PDA2" && !isDownloading)
+        {
+            pdaStoryClass.isPDA2 = true;
+        }
+
+    }
+
     private void ItemDescription()
     {
         Debug.Log("Description being shown");
         hudText.hudDisplay.enabled = true;
-        hudText.hudDisplay.text = "This is a cube";
+        hudText.hudDisplay.text = "A personal PDA";
     }
 
     private void RemoveItemDescription()
@@ -77,7 +97,7 @@ public class ItemDesc : MonoBehaviour
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 2, Color.red);
         if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable))
         {
-            
+            Debug.Log("Item interaction is working");
             isInteracting = true;
             if (isInteracting && !isDownloading)
             {
@@ -85,14 +105,28 @@ public class ItemDesc : MonoBehaviour
             }
 
             Debug.Log("Hit the item");
-            if (Input.GetKeyDown(KeyCode.E) && isInteracting) // Possibly do a raycast check here?
+            if (Input.GetKeyDown(KeyCode.E) && isInteracting)
             {
+                PDACheck();
+                //If player downloads two in succession without checking the first, the latter PDA will not show.
                 if (!isDownloading)
                 {
-                    //Need to figure out here how to run a check to see which item we interacted with.
-                    StartCoroutine(DownloadPDA());
+                    if (!hasAlreadyDownloadedPDA1 && pdaStoryClass.isPDA1 && !hasAlreadyDownloadedPDA1)
+                    {
+                        StartCoroutine(DownloadPDA());
+                        hasAlreadyDownloadedPDA1 = true;
+                        pdaStoryClass.PDA1Found = true;
+                    }
+                    if (!hasAlreadyDownloadedPDA2 && pdaStoryClass.isPDA2 && !hasAlreadyDownloadedPDA2)
+                    {
+                        StartCoroutine(DownloadPDA());
+                        hasAlreadyDownloadedPDA2 = true;
+                        pdaStoryClass.PDA2Found = true;
+                    }
+                    
+
                 }
-                if (isDownloading)
+                else if (isDownloading)
                 {
                     return;
                 }
@@ -109,5 +143,7 @@ public class ItemDesc : MonoBehaviour
             RemoveItemDescription();
         }
     }
+
+
 
 }

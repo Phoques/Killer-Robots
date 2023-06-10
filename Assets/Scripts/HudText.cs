@@ -9,34 +9,51 @@ public class HudText : MonoBehaviour
     public Text noteText;
     public Text hudDisplay;
     public Text downloadingText;
+    public Text tutorialText;
 
     public Image hudNotifications;
     public Text hudNotificationsText;
     public Text hudExitText;
 
     PdaStory pdaStoryClass;
+    ItemDesc itemDescClass;
 
     private void Start()
     {
         noteDisplay.enabled = false;
         hudNotifications.enabled = false;
         pdaStoryClass = FindObjectOfType<PdaStory>();
+        itemDescClass = FindObjectOfType<ItemDesc>();
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.N) && itemDescClass.hasDownloaded)
         {
+            
             hudNotifications.enabled = false;
             hudNotificationsText.text = "";
 
-            noteDisplay.enabled = true;
+            if (pdaStoryClass.isPDA1)
+            {
+                noteDisplay.enabled = true;
+                pdaStoryClass.PDA1();
+                itemDescClass.hasDownloaded = false;
+                pdaStoryClass.isPDA1 = false;
 
-            //Add a check to see what PDA it is.
-            //pdaStoryClass.PDA1(); // Will need to workout how to trigger the different stories via the object interacted with.
+            }
+            else if (pdaStoryClass.isPDA2)
+            {
+                noteDisplay.enabled = true;
+                pdaStoryClass.PDA2();
+                itemDescClass.hasDownloaded = false;
+                pdaStoryClass.isPDA2 = false;
 
-            pdaStoryClass.PDACheck(); // This may be in the wrong spot or need to go altogether.
-            
+            }
+
+
+
+
         }
 
         if (Input.GetKeyDown(KeyCode.X))
