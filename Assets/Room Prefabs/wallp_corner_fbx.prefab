@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5801937979497032865}
   - component: {fileID: 8601990272585586795}
   - component: {fileID: 1771464440654628466}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wallp_corner_fbx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7809405460439366078}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 19.037714, y: 4.56, z: 20.449524}
-  m_LocalScale: {x: 25, y: 25, z: 25}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

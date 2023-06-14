@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5690202846344971138}
   - component: {fileID: 7571498885078579016}
   - component: {fileID: 8979077089322048734}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wallp_hallway1_fbx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8220092341985236637}
   m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 17.734665, y: 3.25, z: 5.245137}
-  m_LocalScale: {x: 25, y: 25, z: 25}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

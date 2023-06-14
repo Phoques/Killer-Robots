@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4787329913892668842}
   - component: {fileID: 7319744094211436896}
   - component: {fileID: 8238598680054577569}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wallp_end_fbx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 9120923979552641205}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 9.3921175, y: 2.66, z: 8.649475}
-  m_LocalScale: {x: 25, y: 25, z: 25}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
