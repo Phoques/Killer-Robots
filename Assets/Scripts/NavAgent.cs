@@ -30,7 +30,7 @@ public class NavAgent : MonoBehaviour
         if (!enemyAiClass.IsPlayerInRange())
         {
             //Run Coroutine to navmesh destination null, say audio, wait for seconds, Start following waypoints again.
-            navMeshAgent.destination = enemyPos;
+            navMeshAgent.destination = enemyPos.position;
         }
     }
 }
