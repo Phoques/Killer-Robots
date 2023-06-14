@@ -10,15 +10,27 @@ public class NavAgent : MonoBehaviour
 
     public Transform[] waypoints;
     public Transform playerPos;
+    public Transform enemyPos;
+
+    public EnemyAI enemyAiClass;
 
 
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        enemyAiClass = FindObjectOfType<EnemyAI>();
     }
 
     private void Update()
     {
-        navMeshAgent.destination = playerPos.position;
+        if (enemyAiClass.IsPlayerInRange())
+        {
+            navMeshAgent.destination = playerPos.position;
+        }
+        if (!enemyAiClass.IsPlayerInRange())
+        {
+            //Run Coroutine to navmesh destination null, say audio, wait for seconds, Start following waypoints again.
+            navMeshAgent.destination = enemyPos;
+        }
     }
 }
