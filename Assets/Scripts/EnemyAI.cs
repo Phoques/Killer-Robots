@@ -31,6 +31,10 @@ public class EnemyAI : MonoBehaviour
             Debug.Log("IMMA GETCHYA");
 
         }
+        if (!IsPlayerInRange())
+        {
+            Debug.Log("I LOST YA");
+        }
     }
 }
 
