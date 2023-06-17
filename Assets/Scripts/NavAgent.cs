@@ -38,7 +38,11 @@ public class NavAgent : MonoBehaviour
     {
         rotateRobot = GetComponent<Transform>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        enemyAiClass = FindObjectOfType<EnemyAI>();
+        //This originally was Find Object of Type, which takes the single instance of what im trying to find.
+        // by doing Get Component, it takes the component ONLY from the object that its on (this)
+        //GetComponent finds components (including scripts) on the same game object that the current script is on,
+        //while FindObjectOfType searches through the scene and grabs the first instance of that type it finds.
+        enemyAiClass = GetComponent<EnemyAI>();
     }
 
     private void Start()
@@ -62,7 +66,7 @@ public class NavAgent : MonoBehaviour
         navMeshAgent.destination = playerPos.position;
         yield return new WaitForSeconds(10);
         //Play sound
-        Debug.Log("SPIN!");
+        Debug.Log("SPIN!"); // Continues to spin even if player is discovered, maybe put a break here.
         navMeshAgent.destination = enemyPos.position;
         StartCoroutine(Rotate(5));
         Debug.Log("Lost Position");
