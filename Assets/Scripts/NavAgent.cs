@@ -13,50 +13,42 @@ public class NavAgent : MonoBehaviour
         Chase
     }
 
-   public EnemyState enemyState;
+    public EnemyState enemyState;
 
-    private NavMeshAgent navMeshAgent;
-    public EnemyAI enemyAiClass;
+    public NavMeshAgent navMeshAgent;
+    private EnemyAI enemyAiClass;
 
-    public Transform[] waypoints;
+    public GameObject robot;
+    public float rotationSpeed = 5f;
+
+    public Transform[] patrol;
+    private int patrolDest = 0;
     public Transform playerPos;
     public Transform enemyPos;
     public Transform post;
-    public Vector3 lastKnownPos;
+    private Transform rotateRobot;
 
     private bool foundPlayer = false;
-    private bool lookingForPlayer = false;
+    private bool lookingForPlayer = true;
+
+    private int waypoint;
 
 
     private void Awake()
     {
+        rotateRobot = GetComponent<Transform>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         enemyAiClass = FindObjectOfType<EnemyAI>();
     }
 
+    private void Start()
+    {
+        Patrol();
+    }
+
     private void Update()
     {
-
         RobotState();
-
-        /*if (enemyAiClass.IsPlayerInRange())
-        {
-            EnemyState(Chase)
-            foundPlayer = true;
-            navMeshAgent.destination = playerPos.position;
-        }
-        if (!enemyAiClass.IsPlayerInRange() && foundPlayer)
-        {
-            lookingForPlayer = true;
-        }
-        if (!enemyAiClass.IsPlayerInRange() && lookingForPlayer)
-        {
-            YellowAlert();
-        }
-        if (!enemyAiClass.IsPlayerInRange() && !foundPlayer)
-        {
-            return;
-        }*/
     }
 
 
@@ -64,28 +56,42 @@ public class NavAgent : MonoBehaviour
 
     public IEnumerator LostPlayer()
     {
-        lookingForPlayer = false;
+        foundPlayer = false;
         //This currently isnt working
         Debug.Log("Starting Coroutine");
         navMeshAgent.destination = playerPos.position;
-        Debug.Log("Finding last Position");
         yield return new WaitForSeconds(10);
         //Play sound
-        foundPlayer = false;
+        Debug.Log("SPIN!");
         navMeshAgent.destination = enemyPos.position;
+        StartCoroutine(Rotate(5));
         Debug.Log("Lost Position");
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(6);
         Debug.Log("Returning to Patrol.");
-        navMeshAgent.destination = post.position;
+
         //Play sound, go back to patrol.
+        lookingForPlayer = true;
 
 
     }
 
-    public void YellowAlert()
+    IEnumerator Rotate(float duration)
     {
-        Debug.Log("Yellow Alert!");
-        StartCoroutine(LostPlayer());
+        float startRotation = transform.eulerAngles.y;
+        float endRotation = startRotation + 360.0f;
+        float t = 0.0f;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+
+            float yRotation = Mathf.Lerp(startRotation, endRotation, t / duration) % 360.0f;
+
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation,
+            transform.eulerAngles.z);
+
+            yield return null;
+        }
     }
 
 
@@ -94,16 +100,20 @@ public class NavAgent : MonoBehaviour
         if (enemyAiClass.IsPlayerInRange())
         {
             enemyState = EnemyState.Chase;
+            ChangeState();
             foundPlayer = true;
-            
+            lookingForPlayer = false;
+
         }
         if (!enemyAiClass.IsPlayerInRange() && foundPlayer)
         {
             enemyState = EnemyState.Search;
+            ChangeState();
         }
         if (!enemyAiClass.IsPlayerInRange() && lookingForPlayer)
         {
-            //YellowAlert();
+            enemyState = EnemyState.Patrol;
+            ChangeState();
         }
         if (!enemyAiClass.IsPlayerInRange() && !foundPlayer)
         {
@@ -111,26 +121,28 @@ public class NavAgent : MonoBehaviour
         }
     }
 
+    private void Patrol()
+    {
+        Debug.Log("Travelling to Patrol Point");
+        navMeshAgent.destination = patrol[patrolDest].position;
+        patrolDest = (patrolDest + 1) % patrol.Length;
+
+
+
+    }
+
+
     private void ChasePlayer()
     {
+        lookingForPlayer = false;
         navMeshAgent.destination = playerPos.position;
     }
 
-    private void SearchForPlayer()
-    {
-        playerPos.position = lastKnownPos;
-        navMeshAgent.destination = lastKnownPos;
-    }
 
     private void ChangeState()
     {
         switch (enemyState)
         {
-            case EnemyState.Patrol:
-                {
-                    //Patrol
-                }
-                break;
             case EnemyState.Chase:
                 {
                     ChasePlayer();
@@ -138,7 +150,15 @@ public class NavAgent : MonoBehaviour
                 break;
             case EnemyState.Search:
                 {
-                    //Search
+                    StartCoroutine(LostPlayer());
+                }
+                break;
+            case EnemyState.Patrol:
+                {
+                    if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.5f)
+                    {
+                        Patrol();
+                    }
                 }
                 break;
             default:
