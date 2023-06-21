@@ -25,7 +25,6 @@ public class NavAgent : MonoBehaviour
     private int patrolDest = 0;
     public Transform playerPos;
     public Transform enemyPos;
-    public Transform post;
     private Transform rotateRobot;
 
     private bool foundPlayer = false;
