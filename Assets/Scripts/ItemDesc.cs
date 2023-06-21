@@ -84,6 +84,43 @@ public class ItemDesc : MonoBehaviour
         Debug.Log("Description being shown");
         hudText.hudDisplay.enabled = true;
         hudText.hudDisplay.text = "A personal PDA";
+
+        if (CompareTag("PDA1"))
+        {
+            hudText.hudDisplay.enabled = true;
+            hudText.hudDisplay.text = "A personal PDA";
+        }
+        if (CompareTag("PDA2"))
+        {
+            hudText.hudDisplay.enabled = true;
+            hudText.hudDisplay.text = "A personal PDA";
+        }
+        if (CompareTag("PDA3"))
+        {
+            hudText.hudDisplay.enabled = true;
+            hudText.hudDisplay.text = "A personal PDA";
+        }
+        if (CompareTag("PowerCell"))
+        {
+            hudText.hudDisplay.enabled = true;
+            hudText.hudDisplay.text = "A power generator";
+        }
+        if (CompareTag("Cryo"))
+        {
+            hudText.hudDisplay.enabled = true;
+            hudText.hudDisplay.text = "A Cryo Stasis Pod";
+        }
+        if (CompareTag("Garbage Chute"))
+        {
+            hudText.hudDisplay.enabled = true;
+            hudText.hudDisplay.text = "A garbage chute";
+        }
+        if (CompareTag("Keycard"))
+        {
+            hudText.hudDisplay.enabled = true;
+            hudText.hudDisplay.text = "A Security keycard";
+        }
+
     }
 
     private void RemoveItemDescription()
@@ -109,6 +146,9 @@ public class ItemDesc : MonoBehaviour
             {
                 PDACheck();
                 //If player downloads two in succession without checking the first, the latter PDA will not show.
+
+                //Pickup Check
+
                 if (!isDownloading)
                 {
                     if (!hasAlreadyDownloadedPDA1 && pdaStoryClass.isPDA1 && !hasAlreadyDownloadedPDA1)

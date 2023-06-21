@@ -172,4 +172,12 @@ public class NavAgent : MonoBehaviour
                 break;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("I CAUGHT YOU");
+        }
+    }
 }
