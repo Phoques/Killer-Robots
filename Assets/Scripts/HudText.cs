@@ -50,7 +50,14 @@ public class HudText : MonoBehaviour
                 pdaStoryClass.isPDA2 = false;
 
             }
+            else if (pdaStoryClass.isPDA3)
+            {
+                noteDisplay.enabled = true;
+                pdaStoryClass.PDA3();
+                itemDescClass.hasDownloaded = false;
+                pdaStoryClass.isPDA3 = false;
 
+            }
 
 
 

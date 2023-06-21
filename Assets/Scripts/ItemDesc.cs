@@ -12,6 +12,7 @@ public class ItemDesc : MonoBehaviour
     public bool hasDownloaded = false;
     public bool hasAlreadyDownloadedPDA1 = false;
     public bool hasAlreadyDownloadedPDA2 = false;
+    public bool hasAlreadyDownloadedPDA3 = false;
 
     HudText hudText;
     PdaStory pdaStoryClass;
@@ -76,6 +77,10 @@ public class ItemDesc : MonoBehaviour
         {
             pdaStoryClass.isPDA2 = true;
         }
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PDA3" && !isDownloading)
+        {
+            pdaStoryClass.isPDA3 = true;
+        }
 
     }
 
@@ -84,6 +89,43 @@ public class ItemDesc : MonoBehaviour
         Debug.Log("Description being shown");
         hudText.hudDisplay.enabled = true;
         hudText.hudDisplay.text = "A personal PDA";
+
+        if (CompareTag("PDA1"))
+        {
+            hudText.hudDisplay.enabled = true;
+            hudText.hudDisplay.text = "A personal PDA";
+        }
+        if (CompareTag("PDA2"))
+        {
+            hudText.hudDisplay.enabled = true;
+            hudText.hudDisplay.text = "A personal PDA";
+        }
+        if (CompareTag("PDA3"))
+        {
+            hudText.hudDisplay.enabled = true;
+            hudText.hudDisplay.text = "A personal PDA";
+        }
+        if (CompareTag("PowerCell"))
+        {
+            hudText.hudDisplay.enabled = true;
+            hudText.hudDisplay.text = "A power generator";
+        }
+        if (CompareTag("Cryo"))
+        {
+            hudText.hudDisplay.enabled = true;
+            hudText.hudDisplay.text = "A Cryo Stasis Pod";
+        }
+        if (CompareTag("Garbage Chute"))
+        {
+            hudText.hudDisplay.enabled = true;
+            hudText.hudDisplay.text = "A garbage chute";
+        }
+        if (CompareTag("Keycard"))
+        {
+            hudText.hudDisplay.enabled = true;
+            hudText.hudDisplay.text = "A Security keycard";
+        }
+
     }
 
     private void RemoveItemDescription()
@@ -109,6 +151,10 @@ public class ItemDesc : MonoBehaviour
             {
                 PDACheck();
                 //If player downloads two in succession without checking the first, the latter PDA will not show.
+                PickupInteractable();
+
+                //Pickup Check
+
                 if (!isDownloading)
                 {
                     if (!hasAlreadyDownloadedPDA1 && pdaStoryClass.isPDA1 && !hasAlreadyDownloadedPDA1)
@@ -123,7 +169,13 @@ public class ItemDesc : MonoBehaviour
                         hasAlreadyDownloadedPDA2 = true;
                         pdaStoryClass.PDA2Found = true;
                     }
-                    
+                    if (!hasAlreadyDownloadedPDA3 && pdaStoryClass.isPDA3 && !hasAlreadyDownloadedPDA3)
+                    {
+                        StartCoroutine(DownloadPDA());
+                        hasAlreadyDownloadedPDA2 = true;
+                        pdaStoryClass.PDA3Found = true;
+                    }
+
 
                 }
                 else if (isDownloading)
@@ -144,6 +196,12 @@ public class ItemDesc : MonoBehaviour
         }
     }
 
-
+    private void PickupInteractable()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable))
+        {
+            Destroy(hit.transform.gameObject);
+        }
+    }
 
 }
