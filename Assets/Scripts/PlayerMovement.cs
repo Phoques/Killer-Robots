@@ -13,7 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public float lookXLimit = 45.0f;
 
     public GameObject player;
-    public Transform teleport;
+    public Transform respawnTeleport;
+    public Transform chuteTeleport;
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
@@ -96,6 +97,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Teleport()
     {
-        player.transform.position = teleport.transform.position;
+        player.transform.position = respawnTeleport.transform.position;
     }
 }

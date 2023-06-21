@@ -7,6 +7,7 @@ TagManager:
   - PDA1
   - PDA2
   - PDA3
+  - PDA Info
   layers:
   - Default
   - TransparentFX

@@ -155,7 +155,7 @@ public class NavAgent : MonoBehaviour
                 break;
             case EnemyState.Search:
                 {
-                    StartCoroutine(LostPlayer());
+                    StartCoroutine(LostPlayer()); // If chase state, stop all coroutines?
                 }
                 break;
             case EnemyState.Patrol:
@@ -176,9 +176,10 @@ public class NavAgent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.tag == "Player")
         {
             StartCoroutine(CaughtPlayer());
+            enemyState = EnemyState.Patrol;
             //Debug.Log("I CAUGHT YOU");
         }
     }
