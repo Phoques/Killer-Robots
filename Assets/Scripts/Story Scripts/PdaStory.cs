@@ -13,6 +13,7 @@ public class PdaStory : MonoBehaviour
     public GameObject PDAPanel;
     public Button PDA1LogButton;
     public Button PDA2LogButton;
+    public Button PDA3LogButton;
     public Text PDAPanelText;
     PlayerMovement playerMovementClass;
 
@@ -27,6 +28,7 @@ public class PdaStory : MonoBehaviour
 
     public bool PDA1Found = false;
     public bool PDA2Found = false;
+    public bool PDA3Found = false;
 
     private void Start()
     {
@@ -109,8 +111,7 @@ public class PdaStory : MonoBehaviour
     public void PDA3Log()
     {
         PDAPanelText.text = "";
-        PDAPanelText.text = "Our best guess is that one of our industry rivals wanted to sabotage our cryogenics research. Unfounded public alarm has been raised over negligible evidence of memory loss and potential fatalities. " +
-            "\nThose bloody rats will use any legal leverage they can find to bring down our great work. The next part of the override device is at [location]. The garbage chutes are safe to climb through if you need an alternate path or need to escape the security drones. Stay out of sight if you can.";
+        PDAPanelText.text = "At the time of recording, it is unsafe for me and the team to leave this room. We're going to put ourselves in cryo and hopefully those crazy bots will wear themselves out before we wake up. \n The last part of the override mechanism is at [location]. Once the parts are together, take it to the door and override that lock....I hope we'll get to see our families again.";
     }
 
 
@@ -118,17 +119,25 @@ public class PdaStory : MonoBehaviour
     {
         PDA1LogButton.gameObject.SetActive(false);
         PDA2LogButton.gameObject.SetActive(false);
+        PDA3LogButton.gameObject.SetActive(false);
     }
 
     public void CheckPDALog()
     {
         if (PDA1Found)
         {
+            Debug.Log("PDA 1 found");
             PDA1LogButton.gameObject.SetActive(true);
         }
         if (PDA2Found)
         {
+            Debug.Log("PDA 2 found");
             PDA2LogButton.gameObject.SetActive(true);
+        }
+        if (PDA3Found)
+        {
+            Debug.Log("PDA 3 found");
+            PDA3LogButton.gameObject.SetActive(true);
         }
 
 

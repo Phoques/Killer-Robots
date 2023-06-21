@@ -31,6 +31,9 @@ public class NavAgent : MonoBehaviour
     private bool foundPlayer = false;
     private bool lookingForPlayer = true;
 
+    private HudElements hudElementsClass;
+    private PlayerMovement playerMovementClass;
+
     private int waypoint;
 
 
@@ -47,6 +50,8 @@ public class NavAgent : MonoBehaviour
 
     private void Start()
     {
+        hudElementsClass = FindObjectOfType<HudElements>();
+        playerMovementClass = FindAnyObjectByType<PlayerMovement>();
         Patrol();
     }
 
@@ -177,7 +182,21 @@ public class NavAgent : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            StartCoroutine(CaughtPlayer());
             Debug.Log("I CAUGHT YOU");
         }
+    }
+
+    IEnumerator CaughtPlayer()
+    {
+        hudElementsClass.fadeToBlack.enabled = true;
+        yield return null;
+        //Play sound
+        playerMovementClass.disableControls = true;
+        playerMovementClass.Teleport();
+        yield return new WaitForSeconds(2);
+        hudElementsClass.fadeToBlack.enabled = false;
+        playerMovementClass.disableControls = false;
+
     }
 }
