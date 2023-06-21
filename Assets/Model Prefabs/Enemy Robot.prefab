@@ -169,7 +169,6 @@ MonoBehaviour:
   - {fileID: 0}
   playerPos: {fileID: 0}
   enemyPos: {fileID: 8646155641105597263}
-  post: {fileID: 0}
 --- !u!195 &8646155641105597233
 NavMeshAgent:
   m_ObjectHideFlags: 0

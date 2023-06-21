@@ -32,8 +32,7 @@ public class NavAgent : MonoBehaviour
 
     private HudElements hudElementsClass;
     private PlayerMovement playerMovementClass;
-
-    private int waypoint;
+    private SFX sfxClass;
 
 
     private void Awake()
@@ -50,13 +49,15 @@ public class NavAgent : MonoBehaviour
     private void Start()
     {
         hudElementsClass = FindObjectOfType<HudElements>();
-        playerMovementClass = FindAnyObjectByType<PlayerMovement>();
+        playerMovementClass = FindObjectOfType<PlayerMovement>();
+        sfxClass = FindObjectOfType<SFX>();
         Patrol();
     }
 
     private void Update()
     {
         RobotState();
+
     }
 
 
@@ -77,7 +78,6 @@ public class NavAgent : MonoBehaviour
         yield return new WaitForSeconds(6);
         Debug.Log("Returning to Patrol.");
 
-        //Play sound, go back to patrol.
         lookingForPlayer = true;
 
 
@@ -131,12 +131,9 @@ public class NavAgent : MonoBehaviour
 
     private void Patrol()
     {
-        Debug.Log("Travelling to Patrol Point");
+        //Debug.Log("Travelling to Patrol Point");
         navMeshAgent.destination = patrol[patrolDest].position;
         patrolDest = (patrolDest + 1) % patrol.Length;
-
-
-
     }
 
 
@@ -182,20 +179,22 @@ public class NavAgent : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             StartCoroutine(CaughtPlayer());
-            Debug.Log("I CAUGHT YOU");
+            //Debug.Log("I CAUGHT YOU");
         }
     }
 
     IEnumerator CaughtPlayer()
     {
         hudElementsClass.fadeToBlack.enabled = true;
+        //sfxClass.StopChaseMusic();
         yield return null;
-        //Play sound
+        sfxClass.PlayCaught();
         playerMovementClass.disableControls = true;
         playerMovementClass.Teleport();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(6);
         hudElementsClass.fadeToBlack.enabled = false;
         playerMovementClass.disableControls = false;
 
     }
+
 }

@@ -29,7 +29,6 @@ public class EnemyAI : MonoBehaviour
         if (IsPlayerInRange())
         {
             Debug.Log("IMMA GETCHYA");
-
         }
         if (!IsPlayerInRange())
         {
