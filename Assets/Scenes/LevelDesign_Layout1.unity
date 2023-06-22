@@ -1054,6 +1054,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 737989770}
     m_Modifications:
+    - target: {fileID: 766865641144621555, guid: b776db16b4e8a7a4c8688585fa127542, type: 3}
+      propertyPath: m_Intensity
+      value: 28.73
+      objectReference: {fileID: 0}
     - target: {fileID: 6907682690592090347, guid: b776db16b4e8a7a4c8688585fa127542, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
@@ -4280,6 +4284,18 @@ PrefabInstance:
     - target: {fileID: 6847793638426796929, guid: a815aa24585aae2478a419a7947028d8, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7891443708263786848, guid: a815aa24585aae2478a419a7947028d8, type: 3}
+      propertyPath: m_Range
+      value: 6.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7891443708263786848, guid: a815aa24585aae2478a419a7947028d8, type: 3}
+      propertyPath: m_Intensity
+      value: 28.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 7891443708263786848, guid: a815aa24585aae2478a419a7947028d8, type: 3}
+      propertyPath: m_SpotAngle
+      value: 32
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a815aa24585aae2478a419a7947028d8, type: 3}
@@ -16709,6 +16725,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 737989770}
     m_Modifications:
+    - target: {fileID: 1956132879550353184, guid: 106bc01bb80ca644e9ccd580092a87bd, type: 3}
+      propertyPath: m_Intensity
+      value: 28.73
+      objectReference: {fileID: 0}
     - target: {fileID: 3055279697929538283, guid: 106bc01bb80ca644e9ccd580092a87bd, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
@@ -16889,6 +16909,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 737989770}
     m_Modifications:
+    - target: {fileID: 1956132879550353184, guid: 106bc01bb80ca644e9ccd580092a87bd, type: 3}
+      propertyPath: m_Intensity
+      value: 28.73
+      objectReference: {fileID: 0}
     - target: {fileID: 3055279697929538283, guid: 106bc01bb80ca644e9ccd580092a87bd, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
@@ -17819,6 +17843,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 737989770}
     m_Modifications:
+    - target: {fileID: 766865641144621555, guid: b776db16b4e8a7a4c8688585fa127542, type: 3}
+      propertyPath: m_Intensity
+      value: 28.73
+      objectReference: {fileID: 0}
     - target: {fileID: 6907682690592090347, guid: b776db16b4e8a7a4c8688585fa127542, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
@@ -20164,6 +20192,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 737989770}
     m_Modifications:
+    - target: {fileID: 1956132879550353184, guid: 106bc01bb80ca644e9ccd580092a87bd, type: 3}
+      propertyPath: m_Intensity
+      value: 28.73
+      objectReference: {fileID: 0}
     - target: {fileID: 3055279697929538283, guid: 106bc01bb80ca644e9ccd580092a87bd, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
@@ -26547,6 +26579,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 737989770}
     m_Modifications:
+    - target: {fileID: 766865641144621555, guid: b776db16b4e8a7a4c8688585fa127542, type: 3}
+      propertyPath: m_Intensity
+      value: 28.73
+      objectReference: {fileID: 0}
     - target: {fileID: 6907682690592090347, guid: b776db16b4e8a7a4c8688585fa127542, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
@@ -31087,6 +31123,10 @@ PrefabInstance:
     - target: {fileID: 3567911980282347732, guid: 8995b7d52834c8e47b6ab5aa7b4dcd6e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5656660381938439681, guid: 8995b7d52834c8e47b6ab5aa7b4dcd6e, type: 3}
+      propertyPath: m_Intensity
+      value: 28.73
       objectReference: {fileID: 0}
     - target: {fileID: 8493745623179430415, guid: 8995b7d52834c8e47b6ab5aa7b4dcd6e, type: 3}
       propertyPath: m_RootOrder
