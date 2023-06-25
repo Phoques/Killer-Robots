@@ -8,6 +8,10 @@ TagManager:
   - PDA2
   - PDA3
   - PDA Info
+  - PowerCell
+  - Cryo
+  - Garbage Chute
+  - Keycard
   layers:
   - Default
   - TransparentFX

@@ -86,41 +86,32 @@ public class ItemDesc : MonoBehaviour
 
     private void ItemDescription()
     {
-        Debug.Log("Description being shown");
-        hudText.hudDisplay.enabled = true;
-        hudText.hudDisplay.text = "A personal PDA";
-
-        if (CompareTag("PDA1"))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PDA1")
         {
             hudText.hudDisplay.enabled = true;
             hudText.hudDisplay.text = "A personal PDA";
         }
-        if (CompareTag("PDA2"))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PDA2")
         {
             hudText.hudDisplay.enabled = true;
             hudText.hudDisplay.text = "A personal PDA";
         }
-        if (CompareTag("PDA3"))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PDA3")
         {
             hudText.hudDisplay.enabled = true;
             hudText.hudDisplay.text = "A personal PDA";
         }
-        if (CompareTag("PowerCell"))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PowerCell")
         {
             hudText.hudDisplay.enabled = true;
             hudText.hudDisplay.text = "A power generator";
         }
-        if (CompareTag("Cryo"))
-        {
-            hudText.hudDisplay.enabled = true;
-            hudText.hudDisplay.text = "A Cryo Stasis Pod";
-        }
-        if (CompareTag("Garbage Chute"))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "Garbage Chute")
         {
             hudText.hudDisplay.enabled = true;
             hudText.hudDisplay.text = "A garbage chute";
         }
-        if (CompareTag("Keycard"))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "Keycard")
         {
             hudText.hudDisplay.enabled = true;
             hudText.hudDisplay.text = "A Security keycard";

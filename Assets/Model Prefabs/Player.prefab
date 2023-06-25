@@ -242,12 +242,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingSpeed: 7.5
   runningSpeed: 11.5
-  gravity: 20
+  gravity: 300
   playerCamera: {fileID: 1832929013084632851}
   lookSpeed: 2
-  lookXLimit: 45
+  lookXLimit: 90
   player: {fileID: 1832929013292236905}
-  teleport: {fileID: 0}
+  respawnTeleport: {fileID: 0}
+  chuteTeleport: {fileID: 0}
   canMove: 1
   disableControls: 0
 --- !u!143 &1832929013292236909

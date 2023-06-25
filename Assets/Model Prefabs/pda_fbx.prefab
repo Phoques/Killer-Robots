@@ -105,10 +105,10 @@ GameObject:
   - component: {fileID: 5336407775061826748}
   - component: {fileID: 9052623431622611737}
   - component: {fileID: 6504770463077410771}
-  - component: {fileID: 2540262048979414142}
+  - component: {fileID: 2617216747670281722}
   m_Layer: 6
   m_Name: pda_fbx
-  m_TagString: Untagged
+  m_TagString: PDA1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,17 +185,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2540262048979414142
-MeshCollider:
+--- !u!65 &2617216747670281722
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4703282164064650758}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4068373912626513877, guid: 223d568fb513ea34980cf7cd0b8e76d3, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.05316447, y: 0.03306873, z: 0.08414309}
+  m_Center: {x: 0.0054898737, y: 0.012198626, z: -0.010520487}
