@@ -14,12 +14,12 @@ public class WsadTutorial : MonoBehaviour
     //Tag not working, probably using wrong library.
     private void OnTriggerStay(Collider other) // Might need to be ontriggerstay
     {
-        Debug.Log("Tag not working");
+        //Debug.Log("Tag not working");
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("WSAD Engaged");
+            //Debug.Log("WSAD Engaged");
             hudTextClass.tutorialText.text = "";
-            hudTextClass.tutorialText.text = "Use WSAD to move and the mouse to look around. \n \n Use Left Shift to Sprint \n \n Press 'E' to interact with objects \n \n Press 'L' to view PDA log";
+            hudTextClass.tutorialText.text = "Use WSAD to move and the mouse to look around. \n \n Use Left Shift to Sprint \n \n Press 'E' to interact with objects \n \n Use left mouse button to turn torch on and off. ";
 
         }
     }
@@ -28,7 +28,7 @@ public class WsadTutorial : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("WSAD DISENGAGE");
+            //Debug.Log("WSAD DISENGAGE");
             hudTextClass.tutorialText.text = "";
 
         }

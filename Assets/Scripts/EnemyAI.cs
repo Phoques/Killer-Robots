@@ -9,10 +9,13 @@ public class EnemyAI : MonoBehaviour
 
     public Transform playerLastKnownPos;
 
+    SFX sfxClass;
+
     private void Start()
     {
         fov = GetComponent<FieldOfView>();
         _player = GameObject.FindGameObjectWithTag("Player");
+        sfxClass = FindObjectOfType<SFX>();
     }
     public bool IsPlayerInRange()
     {
@@ -29,10 +32,11 @@ public class EnemyAI : MonoBehaviour
         if (IsPlayerInRange())
         {
             Debug.Log("IMMA GETCHYA");
+            
         }
         if (!IsPlayerInRange())
         {
-            Debug.Log("I LOST YA");
+            //Debug.Log("I LOST YA");
         }
     }
 }

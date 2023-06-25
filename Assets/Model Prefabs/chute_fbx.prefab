@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6440743227830434076}
   - component: {fileID: 9117232462974750166}
   - component: {fileID: 5623517035394502063}
+  - component: {fileID: 1702508884}
   m_Layer: 6
   m_Name: chute_fbx
   m_TagString: Garbage Chute
@@ -94,8 +95,20 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7315559858397948931}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.049085833, y: 0.010795864, z: 0.04962503}
-  m_Center: {x: -6.8099304e-10, y: 0.0036210539, z: -0.0020231816}
+  m_Size: {x: 0.04908583, y: 0.011755659, z: 0.049625024}
+  m_Center: {x: 1.3759444e-17, y: 0.004101133, z: -0.0020231819}
+--- !u!114 &1702508884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7315559858397948931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 878e5dd4adf7f744e86d87eee18090e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

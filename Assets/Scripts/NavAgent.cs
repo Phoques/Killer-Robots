@@ -141,6 +141,7 @@ public class NavAgent : MonoBehaviour
     {
         lookingForPlayer = false;
         navMeshAgent.destination = playerPos.position;
+        
     }
 
 
@@ -155,7 +156,7 @@ public class NavAgent : MonoBehaviour
                 break;
             case EnemyState.Search:
                 {
-                    StartCoroutine(LostPlayer()); // If chase state, stop all coroutines?
+                    StartCoroutine(LostPlayer());
                 }
                 break;
             case EnemyState.Patrol:

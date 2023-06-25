@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4292482258606931872}
   - component: {fileID: 882193474032611333}
   - component: {fileID: 3160076697759466703}
+  - component: {fileID: 904011887}
   m_Layer: 6
   m_Name: keypad1_fbx
-  m_TagString: Untagged
+  m_TagString: Keypad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3520167237788820762}
-  m_LocalRotation: {x: -0.06061324, y: 0, z: -0, w: 0.9981613}
+  m_LocalRotation: {x: -0.060612928, y: 0, z: 0, w: 0.9981614}
   m_LocalPosition: {x: -1.2891462, y: 2.066, z: 15.885}
-  m_LocalScale: {x: 40.49581, y: 3.5644736, z: 55.10894}
+  m_LocalScale: {x: 17.186966, y: 1.5128105, z: 23.388975}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -6.95, y: 0, z: 0}
 --- !u!33 &882193474032611333
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -87,3 +88,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &904011887
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3520167237788820762}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.015177216, y: 0.17247294, z: 0.01587071}
+  m_Center: {x: -0.00000035763898, y: 0.00908346, z: -0.0023079764}

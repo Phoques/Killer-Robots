@@ -13,10 +13,23 @@ public class ItemDesc : MonoBehaviour
     public bool hasAlreadyDownloadedPDA1 = false;
     public bool hasAlreadyDownloadedPDA2 = false;
     public bool hasAlreadyDownloadedPDA3 = false;
+    public bool hasDoorCode = false;
+
+    public bool powercell1Off = false;
+    public bool powercell2Off = false;
+    public bool powercell3Off = false;
+    public bool powerIsOff = false;
+
+    public bool garbageTravel = false;
+
+    public bool hasKeycard = false;
 
     HudText hudText;
     PdaStory pdaStoryClass;
-
+    ExitDoor exitDoorClass;
+    PlayerMovement playerMovementClass;
+    Chute chuteClass;
+    Lights lightsClass;
 
 
 
@@ -24,6 +37,10 @@ public class ItemDesc : MonoBehaviour
     {
         hudText = FindObjectOfType<HudText>();
         pdaStoryClass = FindObjectOfType<PdaStory>();
+        exitDoorClass = FindObjectOfType<ExitDoor>();
+        playerMovementClass = FindObjectOfType<PlayerMovement>();
+        chuteClass = FindObjectOfType<Chute>();
+        lightsClass = FindObjectOfType<Lights>();
     }
 
 
@@ -31,8 +48,24 @@ public class ItemDesc : MonoBehaviour
     private void Update()
     {
         ItemInteraction();
+        CheckPDAWin();
+        CheckKeycardWin();
     }
 
+    private void CheckPDAWin()
+    {
+        if (hasAlreadyDownloadedPDA1 && hasAlreadyDownloadedPDA2 && hasAlreadyDownloadedPDA3)
+        {
+            hasDoorCode = true;
+        }
+    }
+    private void CheckKeycardWin()
+    {
+        if (hasKeycard)
+        {
+             exitDoorClass.keyCardWin = true;
+        }
+    }
 
     IEnumerator DownloadPDA()
     {
@@ -68,24 +101,74 @@ public class ItemDesc : MonoBehaviour
 
     private void PDACheck()
     {
-
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PDA Info" && !isDownloading)
+        {
+            pdaStoryClass.isPDAInfo = true;
+            PickupInteractable();
+        }
         if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PDA1" && !isDownloading)
         {
             pdaStoryClass.isPDA1 = true;
+            PickupInteractable();
         }
         if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PDA2" && !isDownloading)
         {
             pdaStoryClass.isPDA2 = true;
+            PickupInteractable();
         }
         if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PDA3" && !isDownloading)
         {
             pdaStoryClass.isPDA3 = true;
+            PickupInteractable();
         }
 
     }
 
+    private void PowerCellCheck()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PowerCell1")
+        {
+            powercell1Off = true;
+            Debug.Log("Powercell 1 Down.");
+        }
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PowerCell2")
+        {
+            powercell2Off = true;
+            //Turn off lights
+        }
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PowerCell3")
+        {
+            powercell3Off = true;
+            //Turn off lights
+        }
+    }
+
+    private void KeyCardCheck()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "Keycard")
+        {
+            hasKeycard = true;
+            PickupInteractable();
+        }
+    }
+
+    private void GarbageChuteCheck()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "Garbage Chute")
+        {
+            Debug.Log("Teleporting to Garbage");
+            //playerMovementClass.Teleport(); //Genuinely dont know why this isnt working, yet it works fine with the coroutine below??
+            StartCoroutine(chuteClass.GarbageTeleport());
+        }
+    }
+
     private void ItemDescription()
     {
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PDA Info")
+        {
+            hudText.hudDisplay.enabled = true;
+            hudText.hudDisplay.text = "A personal PDA";
+        }
         if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PDA1")
         {
             hudText.hudDisplay.enabled = true;
@@ -101,7 +184,17 @@ public class ItemDesc : MonoBehaviour
             hudText.hudDisplay.enabled = true;
             hudText.hudDisplay.text = "A personal PDA";
         }
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PowerCell")
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PowerCell1")
+        {
+            hudText.hudDisplay.enabled = true;
+            hudText.hudDisplay.text = "A power generator";
+        }
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PowerCell2")
+        {
+            hudText.hudDisplay.enabled = true;
+            hudText.hudDisplay.text = "A power generator";
+        }
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2, interactable) && hit.transform.tag == "PowerCell3")
         {
             hudText.hudDisplay.enabled = true;
             hudText.hudDisplay.text = "A power generator";
@@ -141,13 +234,18 @@ public class ItemDesc : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) && isInteracting)
             {
                 PDACheck();
-                //If player downloads two in succession without checking the first, the latter PDA will not show.
-                PickupInteractable();
+                KeyCardCheck();
+                PowerCellCheck();
+                GarbageChuteCheck();
 
-                //Pickup Check
 
                 if (!isDownloading)
                 {
+                    if (pdaStoryClass.isPDAInfo)
+                    {
+                        StartCoroutine(DownloadPDA());
+                        
+                    }
                     if (!hasAlreadyDownloadedPDA1 && pdaStoryClass.isPDA1 && !hasAlreadyDownloadedPDA1)
                     {
                         StartCoroutine(DownloadPDA());
@@ -163,7 +261,7 @@ public class ItemDesc : MonoBehaviour
                     if (!hasAlreadyDownloadedPDA3 && pdaStoryClass.isPDA3 && !hasAlreadyDownloadedPDA3)
                     {
                         StartCoroutine(DownloadPDA());
-                        hasAlreadyDownloadedPDA2 = true;
+                        hasAlreadyDownloadedPDA3 = true;
                         pdaStoryClass.PDA3Found = true;
                     }
 

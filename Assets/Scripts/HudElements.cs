@@ -10,6 +10,8 @@ public class HudElements : MonoBehaviour
     public Image hudEye;
     public Image hudroom;
     public Image fadeToBlack;
+    public Image gameOver;
+    public Text gameOverText;
 
     public Image[] hudAwarenessArray;
     public Image[] hudEyeArray;
@@ -20,6 +22,8 @@ public class HudElements : MonoBehaviour
     private void Start()
     {
         fadeToBlack.enabled = false;
+        gameOver.enabled = false;
+        gameOverText.enabled = false;
     }
 
 

@@ -97,6 +97,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void Teleport()
     {
+        Debug.Log("Respawn Teleport");
         player.transform.position = respawnTeleport.transform.position;
+    }
+
+    public void ChuteTeleport()
+    {
+        Debug.Log("Is Teleporting to the garbage");
+        player.transform.position = chuteTeleport.transform.position;
     }
 }

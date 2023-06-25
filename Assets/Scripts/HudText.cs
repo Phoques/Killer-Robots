@@ -33,8 +33,15 @@ public class HudText : MonoBehaviour
             
             hudNotifications.enabled = false;
             hudNotificationsText.text = "";
+            if (pdaStoryClass.isPDAInfo)
+            {
+                noteDisplay.enabled = true;
+                pdaStoryClass.PDAInfo();
+                itemDescClass.hasDownloaded = false;
+                pdaStoryClass.isPDAInfo = false;
 
-            if (pdaStoryClass.isPDA1)
+            }
+            else if (pdaStoryClass.isPDA1)
             {
                 noteDisplay.enabled = true;
                 pdaStoryClass.PDA1();

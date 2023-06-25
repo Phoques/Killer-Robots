@@ -12,6 +12,10 @@ TagManager:
   - Cryo
   - Garbage Chute
   - Keycard
+  - PowerCell1
+  - PowerCell2
+  - PowerCell3
+  - Keypad
   layers:
   - Default
   - TransparentFX

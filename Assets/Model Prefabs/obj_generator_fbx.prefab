@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 515039188394139146}
   m_Layer: 6
   m_Name: obj_generator_fbx
-  m_TagString: PowerCell
+  m_TagString: PowerCell3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
